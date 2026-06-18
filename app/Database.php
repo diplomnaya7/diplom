@@ -54,10 +54,10 @@ class Database
                 PDO::ATTR_EMULATE_PREPARES => false,
                 PDO::ATTR_TIMEOUT => 20,
                 PDO::ATTR_PERSISTENT => false,
-                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4'
             ];
 
             if ($this->config['driver'] === 'mysql') {
+                $options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES utf8mb4';
                 if (!empty(getenv('DB_SSL_CA'))) {
                     $options[PDO::MYSQL_ATTR_SSL_CA] = getenv('DB_SSL_CA');
                     $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
