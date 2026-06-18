@@ -43,11 +43,11 @@ class DemoDataSeeder
     private function seedCategories()
     {
         $categories = [
-            ['name' => 'Технология', 'slug' => 'tech'],
+            ['name' => 'Технологии', 'slug' => 'technology'],
             ['name' => 'Бизнес', 'slug' => 'business'],
-            ['name' => 'Советы', 'slug' => 'tips'],
+            ['name' => 'Полезные советы', 'slug' => 'tips'],
             ['name' => 'Новости', 'slug' => 'news'],
-            ['name' => 'Туториалы', 'slug' => 'tutorials'],
+            ['name' => 'Обучение', 'slug' => 'tutorials'],
         ];
 
         foreach ($categories as $cat) {
