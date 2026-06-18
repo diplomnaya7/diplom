@@ -13,7 +13,12 @@ class Security
         if (is_array($data)) {
             return array_map([self::class, 'escape'], $data);
         }
-        return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+
+        if ($data === null) {
+            return '';
+        }
+
+        return htmlspecialchars((string) $data, ENT_QUOTES, 'UTF-8');
     }
 
     /**

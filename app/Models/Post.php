@@ -59,7 +59,7 @@ class Post
     public function getPublished($limit = 10, $offset = 0)
     {
         return $this->db->fetchAll(
-            "SELECT p.*, u.name as author_name, c.name as category_name
+            "SELECT p.*, u.name as author_name, c.slug as category_slug, c.name as category_name
              FROM {$this->table} p
              LEFT JOIN users u ON p.author_id = u.id
              LEFT JOIN categories c ON p.category_id = c.id

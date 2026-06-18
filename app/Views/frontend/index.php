@@ -47,7 +47,15 @@ ob_start();
             <!-- СЕТКА ПОСТОВ -->
             <main>
                 <h2 style="margin-bottom: 2rem;">Последние статьи</h2>
-                
+                <?php
+                    $categoryPlaceholders = [
+                        'tekhnologii' => ['icon' => '💻', 'label' => 'Технологии', 'color' => '#2563eb'],
+                        'biznes' => ['icon' => '📈', 'label' => 'Бизнес', 'color' => '#0f766e'],
+                        'poleznye-sovety' => ['icon' => '🛠️', 'label' => 'Полезные советы', 'color' => '#7c3aed'],
+                        'novosti' => ['icon' => '📰', 'label' => 'Новости', 'color' => '#dc2626'],
+                        'obuchenie' => ['icon' => '🎓', 'label' => 'Обучение', 'color' => '#f59e0b'],
+                    ];
+                ?>
                 <?php if (empty($posts)): ?>
                     <div class="alert alert-info">
                         Статей пока не опубликовано
@@ -57,8 +65,15 @@ ob_start();
                         <?php foreach ($posts as $post): ?>
                             <article class="card">
                                 <div style="display: grid; grid-template-columns: 150px 1fr; gap: 1.5rem;">
-                                    <div style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); border-radius: 0.75rem; height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
-                                        📄
+                                    <?php
+                                        $placeholder = $categoryPlaceholders[$post['category_slug'] ?? ''] ?? null;
+                                    ?>
+                                    <div style="background: <?= $placeholder['color'] ?? '#2563eb' ?>; border-radius: 0.75rem; height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                                        <?php if ($placeholder): ?>
+                                            <?= $placeholder['icon'] ?>
+                                        <?php else: ?>
+                                            📄
+                                        <?php endif; ?>
                                     </div>
                                     <div>
                                         <h3 style="margin-bottom: 0.5rem;">
@@ -69,8 +84,10 @@ ob_start();
                                         <div style="display: flex; gap: 1rem; margin-bottom: 1rem; font-size: 0.875rem; color: #64748b;">
                                             <span>✍️ <?= Security::escape($post['author_name'] ?? 'Автор') ?></span>
                                             <span>📅 <?= date('d.m.Y', strtotime($post['created_at'])) ?></span>
-                                            <?php if ($post['category_name']): ?>
+                                            <?php if (!empty($post['category_name']) && !empty($post['category_slug'])): ?>
                                                 <span><a href="/category/<?= Security::escape($post['category_slug']) ?>"><?= Security::escape($post['category_name']) ?></a></span>
+                                            <?php elseif (!empty($post['category_name'])): ?>
+                                                <span><?= Security::escape($post['category_name']) ?></span>
                                             <?php endif; ?>
                                         </div>
                                         <p style="color: #64748b; margin-bottom: 1rem;">
