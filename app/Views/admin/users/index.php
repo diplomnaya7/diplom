@@ -51,15 +51,4 @@ ob_start();
 $content = ob_get_clean();
 require __DIR__ . '/../../layouts/admin.php';
 ?>
-                <?php else: ?>
-                    <a href="/admin/users?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                <?php endif; ?>
-            <?php endfor; ?>
-        </div>
-    <?php endif; ?>
-</div>
 
-<?php
-$content = ob_get_clean();
-require __DIR__ . '/../../layouts/admin.php';
-?>
