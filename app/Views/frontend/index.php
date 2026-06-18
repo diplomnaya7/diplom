@@ -49,11 +49,11 @@ ob_start();
                 <h2 style="margin-bottom: 2rem;">Последние статьи</h2>
                 <?php
                     $categoryPlaceholders = [
-                        'tekhnologii' => ['icon' => '💻', 'label' => 'Технологии', 'color' => '#2563eb'],
-                        'biznes' => ['icon' => '📈', 'label' => 'Бизнес', 'color' => '#0f766e'],
-                        'poleznye-sovety' => ['icon' => '🛠️', 'label' => 'Полезные советы', 'color' => '#7c3aed'],
-                        'novosti' => ['icon' => '📰', 'label' => 'Новости', 'color' => '#dc2626'],
-                        'obuchenie' => ['icon' => '🎓', 'label' => 'Обучение', 'color' => '#f59e0b'],
+                        'tekhnologii' => ['image' => '/images/categories/technology.svg', 'label' => 'Технологии', 'color' => '#2563eb'],
+                        'biznes' => ['image' => '/images/categories/business.svg', 'label' => 'Бизнес', 'color' => '#0f766e'],
+                        'poleznye-sovety' => ['image' => '/images/categories/tips.svg', 'label' => 'Полезные советы', 'color' => '#7c3aed'],
+                        'novosti' => ['image' => '/images/categories/news.svg', 'label' => 'Новости', 'color' => '#dc2626'],
+                        'obuchenie' => ['image' => '/images/categories/education.svg', 'label' => 'Обучение', 'color' => '#f59e0b'],
                     ];
                 ?>
                 <?php if (empty($posts)): ?>
@@ -68,11 +68,11 @@ ob_start();
                                     <?php
                                         $placeholder = $categoryPlaceholders[$post['category_slug'] ?? ''] ?? null;
                                     ?>
-                                    <div style="background: <?= $placeholder['color'] ?? '#2563eb' ?>; border-radius: 0.75rem; height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                                    <div style="background: <?= $placeholder['color'] ?? '#2563eb' ?>; border-radius: 0.75rem; height: 150px; display: flex; align-items: center; justify-content: center; color: white;">
                                         <?php if ($placeholder): ?>
-                                            <?= $placeholder['icon'] ?>
+                                            <img src="<?= Security::escape($placeholder['image']) ?>" alt="<?= Security::escape($placeholder['label']) ?>" style="width: 70px; height: 70px; object-fit: contain;">
                                         <?php else: ?>
-                                            📄
+                                            <span style="font-size: 3rem;">📄</span>
                                         <?php endif; ?>
                                     </div>
                                     <div>
