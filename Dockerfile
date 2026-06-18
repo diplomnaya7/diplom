@@ -14,7 +14,7 @@ RUN if [ -d /var/www/html/cms ]; then \
     fi
 
 # 4. Создаем папки и даем права (чтобы не было ошибки Logger.php)
-RUN mkdir -p /var/www/html/storage/logs /var/www/html/public/uploads && \
+RUN mkdir -p /var/www/html/storage/logs /var/www/html/public/uploads /var/www/html/uploads && \
     chmod -R 777 /var/www/html/storage && \
     chmod -R 777 /var/www/html/public/uploads && \
     chmod -R 777 /var/www/html/uploads
