@@ -39,6 +39,9 @@ if (file_exists($envPath)) {
 // Запуск сессии
 session_start();
 
+// Устанавливаем UTF-8 для всего контента
+header('Content-Type: text/html; charset=utf-8');
+
 // Показываем ошибки в разработке
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
