@@ -46,7 +46,7 @@ class Comment
     {
         $sql = "SELECT c.*, u.name as author_name
                 FROM {$this->table} c
-                LEFT JOIN users u ON c.user_id = u.id
+                LEFT JOIN users u ON c.author_id = u.id
                 WHERE c.post_id = ?";
         $params = [$postId];
 

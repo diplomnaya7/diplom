@@ -135,7 +135,7 @@ class FrontendController
         ];
 
         if (isset($_SESSION['user_id'])) {
-            $data['user_id'] = $_SESSION['user_id'];
+            $data['author_id'] = $_SESSION['user_id'];
         }
 
         $this->commentModel->create($data);
